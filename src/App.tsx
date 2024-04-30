@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import cat from "../src/assets/image/loveCat.gif"
 import cat1 from "../src/assets/image/loveCatCrying.gif"
@@ -8,27 +8,20 @@ import cat3 from "../src/assets/image/loveCatKiss.gif"
 import sound from "../src/assets/crush.m4a"
 
 function App() {
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [name, setName] = useState()
   const [value, setValue] = useState(true)
   const [image, setImage] = useState(cat)
   const [dateText, setDateText] = useState("Date Me Please?")
   const [disappear, setDisappear] = useState(false)
   const [position, setPosition] = useState({x:0,y:0})
-  const [display, setDisplay] = useState("fix")
-  const [showNo, setShowNo] = useState("block")
+  const [display, setDisplay] = useState<string>("fix")
 
   const handleName = async (userName: string) => {
     const api = await axios.post("https://fun-backend-11lx.onrender.com/name",{userName : userName})
     if(api.data){
       setName(api.data.data.userName)
     }
-  }
-
-  const playMusic = (value: boolean) => {
-    value === true ?
-      new Audio(sound).play()
-      : new Audio(sound).pause()
   }
 
   const handleChangeImage = (url: string, text: string, dis?: string) => {
@@ -47,8 +40,8 @@ function App() {
      } 
   }
 
-  const objectStyle = {
-    position: display,
+  const objectStyle: React.CSSProperties = {
+    position: display as 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky',
     width: '60px',
     height: '40px',
     left: `${position.x}px`,
@@ -57,7 +50,7 @@ function App() {
   };
  
   useEffect(()=>{
-    audioRef.current.play();
+    audioRef.current?.play();
     Swal.fire({
       title: "Enter Your Name",
       input: "text",
