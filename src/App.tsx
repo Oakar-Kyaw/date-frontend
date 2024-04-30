@@ -94,6 +94,7 @@ function App() {
                   !disappear ?
                 <button 
                   className="bg-green-500 text-white p-2 px-6 rounded-md mt-3"
+                  onTouchStart={ ()=> !disappear ? handleChangeImage(cat2, "Yes..Yes..Please") : ""}
                   onMouseEnter={ ()=> !disappear ? handleChangeImage(cat2, "Yes..Yes..Please") : ""}
                   // onMouseLeave={()=>handleChangeImage(cat, "Would you date me?")}
                   onMouseDown={()=>handleChangeImage(cat3, "I Love You", "yes")}
@@ -105,6 +106,7 @@ function App() {
                       <button
                         style = {objectStyle}
                         className="text-white bg-red-900 rounded-md mt-3"
+                        onTouchStart={()=>handleChangeImage(cat1, "No, Please Don't", "no")}
                         onMouseEnter={()=>handleChangeImage(cat1, "No, Please Don't", "no")}
                       >No</button>
                       : ""
