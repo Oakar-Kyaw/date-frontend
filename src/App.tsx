@@ -10,7 +10,7 @@ import sound from "../src/assets/crush.m4a";
 function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [name, setName] = useState<string>();
-  const [image, setImage] = useState<string>(cat);
+  const [imageUrl, setImageUrl] = useState<string>(`${cat}?${Date.now()}`); // Cache busting
   const [dateText, setDateText] = useState<string>("Date Me Please?");
   const [disappear, setDisappear] = useState<boolean>(false);
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -24,7 +24,7 @@ function App() {
   };
 
   const handleChangeImage = (url: string, text: string, dis?: string) => {
-    setImage(url);
+    setImageUrl(`${url}?${Date.now()}`); // Cache busting
     setDateText(text);
     if (dis === "no") {
       const maxX = 100; // Maximum X coordinate within the container
@@ -84,7 +84,7 @@ function App() {
           {dateText}
         </div>
         <div className="w-64 h-64">
-          <img src={image} className="w-full h-full bg-cover" alt="" />
+          <img src={imageUrl} className="w-full h-full bg-cover" alt="" />
         </div>
         <div className="flex space-x-12 ">
           {!disappear &&
