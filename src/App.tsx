@@ -10,7 +10,6 @@ import sound from "../src/assets/crush.m4a"
 function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [name, setName] = useState()
-  const [value, setValue] = useState(true)
   const [image, setImage] = useState(cat)
   const [dateText, setDateText] = useState("Date Me Please?")
   const [disappear, setDisappear] = useState(false)
@@ -26,11 +25,10 @@ function App() {
 
   const handleChangeImage = (url: string, text: string, dis?: string) => {
      setImage(url)
-     setValue(!value)
      setDateText(text)
      if(dis === "no"){
       const maxX = 100; // Maximum X coordinate within the container
-      const maxY = 800; // Maximum Y coordinate within the container
+      const maxY = 500; // Maximum Y coordinate within the container
       const newX = Math.floor(Math.random() * maxX);
       const newY = Math.floor(Math.random() * maxY);
       setPosition({x: newX, y:newY})
