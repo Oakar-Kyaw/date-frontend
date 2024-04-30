@@ -15,7 +15,7 @@ function App() {
   const [dateText, setDateText] = useState("Date Me Please?")
   const [disappear, setDisappear] = useState(false)
   const [position, setPosition] = useState({x:0,y:0})
-  const [display, setDisplay] = useState<string>("fix")
+  const [display, setDisplay] = useState<string>("fixed")
 
   const handleName = async (userName: string) => {
     const api = await axios.post("https://fun-backend-11lx.onrender.com/name",{userName : userName})
@@ -29,8 +29,8 @@ function App() {
      setValue(!value)
      setDateText(text)
      if(dis === "no"){
-      const maxX = 500; // Maximum X coordinate within the container
-      const maxY = 500; // Maximum Y coordinate within the container
+      const maxX = 100; // Maximum X coordinate within the container
+      const maxY = 100; // Maximum Y coordinate within the container
       const newX = Math.floor(Math.random() * maxX);
       const newY = Math.floor(Math.random() * maxY);
       setPosition({x: newX, y:newY})
